@@ -3,14 +3,13 @@ import { Button } from "./Button";
 
 export const OperatorKeys = (props) => {
     const {operators} = props;
-    console.log(operators)
     return (
         <>
         {operators.map((item,i) => (
         // <Button buttonText={item} />
 
 
-<Button key={`${item.displayName}_operator`} buttonText={item.symbol}/>
+<Button key={`${item.displayName}_operator`} buttonText={item.symbol} {...props}/>
         
       
 

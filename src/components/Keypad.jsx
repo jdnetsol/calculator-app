@@ -5,9 +5,9 @@ import { OperatorKeys } from "./OperatorKeys";
 export const Keypad = (props) => {
    
   return (
-    <>This is the keypad
-      <NumberKeys />
-      <OperatorKeys {...props} />
+    <>
+      <NumberKeys {...props}/>
+      <OperatorKeys {...props}/>
     </>
   );
 };
