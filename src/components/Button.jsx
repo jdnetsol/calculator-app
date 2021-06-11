@@ -12,7 +12,6 @@ min-height: 44px;
 min-width: 44px;
 font-weight: bold;
 font-size: x-large;
-margin: 16px;
 &:hover {
     background-color: #666;
     color: #fff;
@@ -30,7 +29,7 @@ margin: 16px;
 export const Button = (props) => {
     const { buttonText, displayName, type } = props;
     return (
-        <CalculatorButton onClick={(e)=> props.onClick(e)} value={buttonText} aria-label={"" || displayName } type={type || "button" }>
+        <CalculatorButton onClick={(e)=> props.onClick(e)} value={buttonText} aria-label={"" || displayName } type={type || "button" } className={`button${displayName || buttonText}`}>
             { buttonText }
         </CalculatorButton>
     )

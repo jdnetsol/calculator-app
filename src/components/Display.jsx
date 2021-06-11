@@ -9,7 +9,7 @@ export const Display = (props) => {
   }, [formula])
 
   return (
-    <div className="form__container">
+    <div className="calculator-display">
       <label>
         Enter Formula : <span id="formulaDesc">e.g. 1+1 </span>
         <input
@@ -24,7 +24,7 @@ export const Display = (props) => {
         />
         
       </label>
-      <p>Calculation will appear here: {formula && result && `${formula} = ${result}`}</p>
+      = {formula && result && `${result}`}
     </div>
   );
 };
