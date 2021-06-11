@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { Keypad } from "./Keypad";
 import { Display } from "./Display";
+import { Button } from "./Button";
 import styled from "styled-components";
 import { configure } from "@testing-library/dom";
 const Parser = require("expr-eval").Parser;
 
 export const Calculator = () => {
-    const [formula, setFormula] = useState("");
+  const [formula, setFormula] = useState("");
+  const [result, setResult] = useState();
+  // const [history, setHistory] = useState({"id":0 "formula":0 "result":0})
 
   var formulaParser = new Parser();
 
@@ -32,16 +35,24 @@ export const Calculator = () => {
     },
   });
 
+  const doTheMath = (e) => {
+    console.log("doing the maths...");
+    if (!formula) return false;
+    let expr = formulaParser.parse(formula);
+    // console.log(expr.evaluate());
+    setResult(expr.evaluate());
+  };
+
   const handleKeyPadClick = (e) => {
     console.log("you clicked", e.target.value);
-    setFormula(formula + e.target.value )
-    // var expr = formulaParser.parse(formula);
-    // console.log(expr.evaluate());
+    if (e.target.value === "=") return false;
+    setFormula(formula + e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("form submittied ", e.target.value);
+    console.log("form submitted ");
+    doTheMath();
   };
 
   const handleFormulaInputChange = (e) => {
@@ -61,7 +72,10 @@ export const Calculator = () => {
   return (
     <>
       <h2>Welcome to the Calculator...</h2>
-      <p>enter formula below...</p>
+      <p>
+        Formula can be input using the "Enter Formula" field directly or via the
+        on screen buttons.
+      </p>
       <form
         name="calculatorForm"
         method="POST"
@@ -70,8 +84,20 @@ export const Calculator = () => {
         onSubmit={(e) => handleSubmit(e)}
       >
         <legend>Calculator</legend>
-        <Display handleFormulaInputChange={handleFormulaInputChange} formula={formula} setFormula={setFormula}/>
+        <Display
+          handleFormulaInputChange={handleFormulaInputChange}
+          formula={formula}
+          setFormula={setFormula}
+          result={result}
+          setResult={setResult}
+        />
         <Keypad operators={config.operators} onClick={handleKeyPadClick} />
+        <Button
+          displayName="Equals"
+          buttonText="="
+          onClick={handleKeyPadClick}
+          type="submit"
+        />
       </form>
     </>
   );

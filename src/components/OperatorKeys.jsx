@@ -9,7 +9,7 @@ export const OperatorKeys = (props) => {
         // <Button buttonText={item} />
 
 
-<Button key={`${item.displayName}_operator`} buttonText={item.symbol} {...props}/>
+<Button key={`${item.displayName}_operator`} buttonText={item.symbol} {...props} displayName={item.displayName} />
         
       
 
