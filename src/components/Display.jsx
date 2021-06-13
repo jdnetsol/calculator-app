@@ -1,12 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 
 export const Display = (props) => {
-    
-  const { formula, setFormula, handleFormulaInputChange, result, setResult } = props;
+  const { formula, handleFormulaInputChange, result, setResult } = props;
 
   useEffect(() => {
-      setResult("formula has changed, press equals for result")
-  }, [formula])
+    setResult("formula has changed, press equals for result");
+  }, [formula]);
 
   return (
     <div className="calculator-display">
@@ -17,12 +16,11 @@ export const Display = (props) => {
           placeholder="Formula, e.g. 1+1"
           tabIndex="0"
           onChange={(e) => handleFormulaInputChange(e)}
-              className="form form__input"
+          className="form form__input"
           type="text"
           value={formula}
           aria-describedby="formulaDesc"
         />
-        
       </label>
       = {formula && result && `${result}`}
     </div>
