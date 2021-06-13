@@ -1,4 +1,10 @@
-import { fireEvent, render, cleanup, screen, Simulate } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  cleanup,
+  screen,
+  Simulate,
+} from "@testing-library/react";
 import { shallow, mount } from "enzyme";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -9,12 +15,12 @@ import { Layout } from "./components/Layout";
 import { NumberKeys } from "./components/NumberKeys";
 import { OperatorKeys } from "./components/OperatorKeys";
 
-afterEach(cleanup)
+afterEach(cleanup);
 
 const mockOperators = [
-      { displayName: "Multiply", Symbol: "*" },
-      { displayName: "Subtract", Symbol: "-" },
-    ];
+  { displayName: "Multiply", Symbol: "*" },
+  { displayName: "Subtract", Symbol: "-" },
+];
 
 // test ("should take a snapshot", () => {
 //   const { asFragment } = render(<App />)
@@ -47,4 +53,14 @@ test("renders a button for each operator", () => {
   expect(wrapper.find(Button)).toHaveLength(mockOperators.length);
 });
 
-
+test("number key populates display input field with its value", () => {
+  const { container, rerender, getByTestId, getByText } = render(<App />);
+  screen.debug();
+  const randomNumberFrom0to9 = Math.floor(Math.random() * 10).toString();
+  // console.log("----------->" + randomNumberFrom0to9)
+  const numberButton = getByText(randomNumberFrom0to9);
+  fireEvent.click(numberButton);
+  expect(screen.getByRole('form')).toHaveFormValues({
+    formula: randomNumberFrom0to9,
+  })
+});
