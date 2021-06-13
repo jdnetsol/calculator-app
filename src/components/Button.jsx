@@ -27,9 +27,9 @@ font-size: x-large;
 `;
 
 export const Button = (props) => {
-    const { buttonText, displayName, type } = props;
+    const { buttonText, displayName, type, onClick, testid } = props;
     return (
-        <CalculatorButton onClick={(e)=> props.onClick(e)} value={buttonText} aria-label={"" || displayName } type={type || "button" } className={`button${displayName || buttonText}`}>
+        <CalculatorButton onClick={(e)=> onClick(e)} value={buttonText} aria-label={"" || displayName } type={type || "button" } className={`button${displayName || buttonText}`} data-testid={testid}>
             { buttonText }
         </CalculatorButton>
     )
