@@ -46,3 +46,5 @@ test("renders a button for each operator", () => {
   const wrapper = shallow(<OperatorKeys operators={mockOperators} />);
   expect(wrapper.find(Button)).toHaveLength(mockOperators.length);
 });
+
+

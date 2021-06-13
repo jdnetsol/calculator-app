@@ -1,19 +1,13 @@
 import React, { useState } from "react";
 import { Keypad } from "./Keypad";
 import { Display } from "./Display";
-import { Button } from "./Button";
 import { History } from "./History";
-import styled from "styled-components";
-import { configure } from "@testing-library/dom";
 const Parser = require("expr-eval").Parser;
 
 export const Calculator = () => {
   const [formula, setFormula] = useState("");
   const [result, setResult] = useState();
   const [calculations] = useState([]);
-  // const [history, setHistory] = useState({"id":0 "formula":0 "result":0})
-
-  var formulaParser = new Parser();
 
   var formulaParser = new Parser({
     operators: {
