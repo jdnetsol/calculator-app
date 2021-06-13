@@ -14,7 +14,7 @@ export const Keypad = (props) => {
         buttonText="="
         onClick={props.onClick}
         type="submit"
-        id="equals"
+        testid="equals"
       />
     </div>
   );
